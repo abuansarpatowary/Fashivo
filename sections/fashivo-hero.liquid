@@ -1,0 +1,122 @@
+{% assign slides = section.blocks %}
+<div class="hero-wrapper-two">
+  <!-- === Hero shape === -->
+  <div
+    class="hero-shape bg_cover d-none d-xl-block"
+    style="background-image: url(assets/images/hero/hero-two-shape1.png);"
+  ></div>
+  <!-- === Hero Image === -->
+  <div class="hero-image d-none d-xl-block">
+    {% if section.settings.slider_image != blank %}
+      <img src="{{ section.settings.slider_image |  image_url: width: 1000, height: 800  }}" alt="Hero Image">
+    {% else %}
+      {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+    <div class="hero-img-shape">
+      <img src="{{ "hero-two-img-shape1.png" |  asset_url }}" alt="Image Shape">
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-6">
+        <!-- === hero Post Slider === -->
+        <div class="hero-post-slider mb-100">
+          {% for slide in slides %}
+            <div class="single-hero-post">
+              <div class="hero-content style-two">
+                <span class="tag-line"
+                  ><i class="flaticon-star-2"></i><b>{{ slide.settings.slider_subtitle }}</b
+                  ><i class="flaticon-star-2"></i
+                ></span>
+                <h1>
+                  <span>{{ slide.settings.slider_title_discount }}</span>
+                  {{ slide.settings.slider_title_discount_text }}
+                </h1>
+                <p>{{ slide.settings.slider_description }}</p>
+                <a href="{{ slide.settings.slider_btn_url }}" class="theme-btn style-one">
+                  {{- slide.settings.slider_btn_text -}}
+                </a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <!-- === Hero Dots === -->
+        {% if section.settings.show_slider_dots == true and slides.size > 1 %}
+          <div class="hero-dots"></div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "tag": "section",
+  "class": "hero-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "slider_image",
+      "label": "Slider Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_slider_dots",
+      "label": "Show Slider Dots",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hero-slider",
+      "name": "Hero Slider",
+      "settings": [
+        {
+          "type": "text",
+          "id": "slider_subtitle",
+          "label": "Slider Subtitle",
+          "default": "Best for your categories"
+        },
+        {
+          "type": "text",
+          "id": "slider_title_discount",
+          "label": "Slider Title Discount Percentage",
+          "default": "Get 20% Off"
+        },
+        {
+          "type": "text",
+          "id": "slider_title_discount_text",
+          "label": "Slider Title Discount Text",
+          "default": "Women Cloth Collections"
+        },
+        {
+          "type": "textarea",
+          "id": "slider_description",
+          "label": "Slider Description",
+          "default": "Enjoy 20% off on our entire Women Clothing Collection! Discover stylish outfits for every occasion and save on your favorite pieces."
+        },
+        {
+          "type": "url",
+          "id": "slider_btn_url",
+          "label": "Slider Button URL"
+        },
+        {
+          "type": "text",
+          "id": "slider_btn_text",
+          "label": "Slider Button Text",
+          "default": "Shop Now"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section"
+    }
+  ]
+}
+{% endschema %}
