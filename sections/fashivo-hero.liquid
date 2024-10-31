@@ -8,12 +8,17 @@
   <!-- === Hero Image === -->
   <div class="hero-image d-none d-xl-block">
     {% if section.settings.slider_image != blank %}
-      <img src="{{ section.settings.slider_image |  image_url: width: 1000, height: 800  }}" alt="Hero Image">
+      <img
+        src="{{ section.settings.slider_image |  image_url: width: 1000, height: 800  }}"
+        alt="Hero Image"
+        width="1000px"
+        height="800px"
+      >
     {% else %}
       {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
     {% endif %}
     <div class="hero-img-shape">
-      <img src="{{ "hero-two-img-shape1.png" |  asset_url }}" alt="Image Shape">
+      <img src="{{ "hero-two-img-shape1.png" |  asset_url }}" alt="Image Shape" width="115px" height="800px">
     </div>
   </div>
   <div class="container">
