@@ -1,0 +1,104 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <!-- === Section Title  === -->
+      <div class="section-title text-center mb-60">
+        <div class="sub-heading d-inline-flex align-items-center">
+          <i class="flaticon-sparkler"></i>
+          <span class="sub-title">{{ section.settings.section_subtitle }}</span>
+          <i class="flaticon-sparkler"></i>
+        </div>
+        <h2>{{ section.settings.section_title }}</h2>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <!-- === Banner Item  === -->
+    <div class="col-xl-5">
+      <div
+        class="banner-item style-two mb-40 bg_cover"
+        style="background-image: url(assets/images/banner/banner-bg1.jpg);"
+      >
+        <div class="banner-img"><img src="assets/images/banner/banner-img1.png" alt="banner image"></div>
+        <div class="banner-content">
+          <span>Up to 40% Off</span>
+          <h4>Shop new Collection For Women</h4>
+          <div class="separator"></div>
+          <a href="shops.html" class="theme-btn style-two">Shop Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-7">
+      <!-- === Banner Item  === -->
+      <div
+        class="banner-item style-three mb-40 bg_cover"
+        style="background-image: url(assets/images/banner/banner-bg2.jpg);"
+      >
+        <div class="banner-img"><img src="assets/images/banner/banner-img2.png" alt="banner image"></div>
+        <div class="banner-content">
+          <span>45% Off</span>
+          <div class="separator"></div>
+          <h4>Discover the Latest Women's Collection</h4>
+          <a href="shops.html" class="theme-btn style-one">Shop Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-7">
+      <!-- === Banner Item  === -->
+      <div
+        class="banner-item style-three mb-40 bg_cover"
+        style="background-image: url(assets/images/banner/banner-bg3.jpg);"
+      >
+        <div class="banner-img"><img src="assets/images/banner/banner-img3.png" alt="banner image"></div>
+        <div class="banner-content">
+          <span>35% Off</span>
+          <div class="separator"></div>
+          <h4>Explore Fresh Arrivals in Women’s Fashion</h4>
+          <a href="shops.html" class="theme-btn style-one">Shop Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-5">
+      <!-- === Banner Item  === -->
+      <div
+        class="banner-item style-two mb-40 bg_cover"
+        style="background-image: url(assets/images/banner/banner-bg4.jpg);"
+      >
+        <div class="banner-img"><img src="assets/images/banner/banner-img4.png" alt="banner image"></div>
+        <div class="banner-content">
+          <span>Up to 40% Off</span>
+          <h4>Unveil New Trends in Women's Clothing</h4>
+          <div class="separator"></div>
+          <a href="shops.html" class="theme-btn style-two">Shop Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fashivo Promo Product",
+  "tag": "section",
+  "class": "banner-promo-section pt-130",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "New Collection"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Shop New Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fashivo Promo Product"
+    }
+  ]
+}
+{% endschema %}
