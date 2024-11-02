@@ -1,0 +1,93 @@
+{% assign collections = section.settings.collection_list %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <!-- === Section Title  === -->
+      <div class="section-title mb-60">
+        <div class="sub-heading d-inline-flex align-items-center">
+          <i class="flaticon-sparkler"></i>
+          <span class="sub-title">{{ section.settings.section_subtitle }}</span>
+        </div>
+        <h2>{{ section.settings.section_title }}</h2>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <!-- === Category Button  === -->
+      <div class="category-button float-md-end">
+        <a href="{{ section.settings.collections_btn_link }}" class="theme-btn style-one">
+          {{- section.settings.collections_btn_text }}
+          <i class="far fa-arrow-right"></i
+        ></a>
+      </div>
+    </div>
+  </div>
+  <!-- ====== Start Category Wrapper ====== -->
+  <div class="category-wrapper pt-80">
+    <div class="row justify-content-center">
+      {% for collection in collections %}
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+          <div class="category-item style-two mb-110">
+            <div class="category-img">
+              {% if collection.featured_image != blank %}
+                <img
+                  src="{{ collection.featured_image |  image_url: width:180, height:180  }}"
+                  alt="Category Thumbnail"
+                >
+              {% else %}
+                {{ 'collection-2' | placeholder_svg_tag }}
+              {% endif %}
+            </div>
+            <div class="category-content">
+              <a href="{{ collection.url }}" class="category-btn">{{ collection.title }}</a>
+              <span>{{ collection.all_products_count }} items</span>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fashivo Collection",
+  "tag": "section",
+  "class": "category-section pt-90 pb-20",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "Categories"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Browse Top Category"
+    },
+    {
+      "type": "text",
+      "id": "collections_btn_text",
+      "label": "Collections Button Text",
+      "default": "View All"
+    },
+    {
+      "type": "url",
+      "id": "collections_btn_link",
+      "label": "Collections Button Link"
+    },
+    {
+      "type": "collection_list",
+      "id": "collection_list",
+      "label": "Collection List",
+      "limit": 6
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fashivo Collection"
+    }
+  ]
+}
+{% endschema %}
