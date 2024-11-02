@@ -1856,7 +1856,12 @@ button {
   margin-top: -110px;
   margin-bottom: 21px;
 }
-.category-item.style-two .category-img img {
+.category-item.style-two>.category-img>img {
+  width: 100%;
+  border: 1px dashed var(--light-gray);
+  border-radius: 50%;
+}
+.category-item.style-two>.category-img>svg {
   width: 100%;
   border: 1px dashed var(--light-gray);
   border-radius: 50%;
