@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <!-- === Section Title  === -->
+      <div class="section-title text-center mb-60">
+        <div class="sub-heading d-inline-flex align-items-center">
+          <i class="flaticon-sparkler"></i>
+          <span class="sub-title">{{ section.settings.sub_title }}</span>
+          <i class="flaticon-sparkler"></i>
+        </div>
+        <h2>{{ section.settings.main_title }}</h2>
+      </div>
+    </div>
+  </div>
+  <div class="products-item-wrapper">
+    <!-- === Loop through selected products === -->
+    {% for product in section.settings.products %}
+      <div class="product-item style-three">
+        <div class="product-thumbnail">
+          <img src="{{ product.featured_image | img_url: '500x500' }}" alt="{{ product.title }}">
+          {% if product.compare_at_price > product.price %}
+            <div class="discount">
+              {{
+                product.compare_at_price
+                | minus: product.price
+                | times: 100.0
+                | divided_by: product.compare_at_price
+                | round: 0
+              -}}
+              % Off
+            </div>
+          {% endif %}
+          <div class="hover-content">
+            <a href="{{ product.url }}" class="icon-btn"><i class="fa fa-heart"></i></a>
+            <a href="{{ product.url }}" class="cart-btn"><i class="far fa-shopping-basket"></i></a>
+            <a href="{{ product.featured_image | img_url: '500x500' }}" class="img-popup icon-btn"
+              ><i class="fa fa-eye"></i
+            ></a>
+          </div>
+        </div>
+        <div class="product-info-wrap">
+          <div class="product-info">
+            <div class="product-meta d-flex">
+              <span>Brand: {{ product.vendor }}</span>
+              <ul class="ratings rating{{ product.selected_or_first_available_variant.metafields.global.rating }}">
+                {% for i in (1..5) %}
+                  <li>
+                    <i
+                      class="fas fa-star{% unless i <= product.selected_or_first_available_variant.metafields.global.rating %}-o{% endunless %}"
+                    ></i>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <h4 class="title">
+              <a href="{{ product.url }}">{{ product.title }}</a>
+            </h4>
+          </div>
+          <div class="product-price">
+            <span class="price new-price">{{ product.price | money }}</span>
+            {% if product.compare_at_price > product.price %}
+              <span class="price prev-price">{{ product.compare_at_price | money }}</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Shopify Schema -->
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Sub Title",
+      "default": "Feature Products"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main Title",
+      "default": "Our Features Collection"
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Featured Products",
+      "limit": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}
