@@ -1,3 +1,5 @@
+{% assign collections = section.settings.product_collection %}
+<div class="container">
 <div class="row">
   <!-- Loop through banners -->
   {% for banner in section.blocks %}
@@ -23,6 +25,7 @@
       </div>
   {% endfor %}
 </div>
+</div>
 
 
 {% schema %}
@@ -42,6 +45,11 @@
         "id": "section_title",
         "label": "Section Title",
         "default": "Shop New Collection"
+      },
+      {
+        "type": "collection_list",
+        "id": "product_collection",
+        "label": "Product Collection"
       }
     ],
     "blocks": [
