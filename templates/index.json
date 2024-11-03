@@ -22,6 +22,44 @@
         "slide_three"
       ]
     },
+    "new_collections": {
+      "type": "fashivo-promo-product",
+      "settings": {
+
+      },
+      "blocks": {
+        "slide_one": {
+          "type": "banner",
+          "settings": {
+            
+          }
+        },
+        "slide_two": {
+          "type": "banner",
+          "settings": {
+            
+          }
+        },
+        "slide_three": {
+          "type": "banner",
+          "settings": {
+            
+          }
+        },
+        "slide_four": {
+          "type": "banner",
+          "settings": {
+            
+          }
+        },
+      },
+      "block_order": [
+        "slide_one",
+        "slide_two",
+        "slide_three",
+        "slide_four"
+      ]
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -223,6 +261,7 @@
   },
   "order": [
     "top_banner",
+    "new_collections",
     "image_banner",
     "rich_text",
     "featured_collection",
