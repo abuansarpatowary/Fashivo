@@ -9,7 +9,7 @@
           <div class="top-left">
             <ul>
               <li>
-                <span><i class="fas fa-shipping-fast"></i>Free Shipping</span>
+                <span><i class="fas fa-shipping-fast"></i>{{ section.settings.shipping_text }}</span>
               </li>
               <li>
                 <div class="pesco-dropdown">
@@ -81,7 +81,7 @@
       <div class="primary-menu">
         <div class="nav-inner-menu">
           <div class="site-branding">
-            <a href="{{shop.url}}" class="brand-logo">
+            <a href="{{routes.root_url}}" class="brand-logo">
               {% if shop.brand.logo != blank %}
                 <img src="{{ shop.brand.logo |  image_url: width: 150, height: 50 }}" alt="Site Logo">
               {% else %}
@@ -182,6 +182,12 @@
       "type": "text",
       "id": "shop_contact_phone",
       "label": "Enter Shop Contact Phone"
+    },
+    {
+      "type": "text",
+      "id": "shipping_text",
+      "label": "Enter Shipping Text",
+      "default": "Free Shipping"
     }
   ],
   "presets": [
