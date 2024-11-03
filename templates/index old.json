@@ -1,27 +1,5 @@
 {
   "sections": {
-    "top_banner": {
-      "type": "fashivo-hero",
-      "settings": {
-
-      },
-      "blocks": {
-        "slide_one": {
-          "type": "hero-slider",
-        },
-        "slide_two": {
-          "type": "hero-slider",
-        },
-        "slide_three": {
-          "type": "hero-slider",
-        }
-      },
-      "block_order": [
-        "slide_one",
-        "slide_two",
-        "slide_three"
-      ]
-    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -222,7 +200,6 @@
     }
   },
   "order": [
-    "top_banner",
     "image_banner",
     "rich_text",
     "featured_collection",
