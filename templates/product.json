@@ -1,5 +1,8 @@
 {
   "sections": {
+    "product_page_banner":{
+      "type": "fashivo-product-page-banner"
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -208,6 +211,7 @@
     }
   },
   "order": [
+    "product_page_banner",
     "main",
     "image-with-text",
     "multicolumn",
