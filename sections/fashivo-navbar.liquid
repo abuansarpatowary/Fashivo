@@ -13,17 +13,16 @@
               </li>
               <li>
                 <div class="pesco-dropdown">
-                  <a href="javascript:void(0)">USD <i class="far fa-angle-down"></i></a>
+                  <a href="javascript:void(0)">
+                    {{ shop.currency }}
+                    <i class="far fa-angle-down"></i>
+                  </a>
                   <ul class="dropdown">
-                    <li>
-                      <a href="javascript:void(0)">USD</a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0)">Aud</a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0)">GBP</a>
-                    </li>
+                    {% for currency in shop.enabled_currencies %}
+                      <li>
+                        <a href="?currency={{ currency }}">{{ currency.iso_code }}</a>
+                      </li>
+                    {% endfor %}
                   </ul>
                 </div>
               </li>
@@ -31,15 +30,11 @@
                 <div class="pesco-dropdown">
                   <a href="javascript:void(0)">English <i class="far fa-angle-down"></i></a>
                   <ul class="dropdown">
-                    <li>
-                      <a href="javascript:void(0)">English</a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0)">Russian</a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0)">French</a>
-                    </li>
+                    {% for country in localization.available_countries -%}
+                      <li>
+                        <a href="javascript:void(0)">{{ country }}</a>
+                      </li>
+                    {%- endfor %}
                   </ul>
                 </div>
               </li>
@@ -77,9 +72,13 @@
       <div class="primary-menu">
         <div class="nav-inner-menu">
           <div class="site-branding">
-            <a href="{{shop.url}}" class="brand-logo"
-              ><img src="{{ shop.brand.logo |  image_url: width: 150, height: 50 }}" alt="Site Logo"
-            ></a>
+            <a href="{{shop.url}}" class="brand-logo">
+              {% if shop.brand.logo != blank %}
+                <img src="{{ shop.brand.logo |  image_url: width: 150, height: 50 }}" alt="Site Logo">
+              {% else %}
+                <h3>{{ shop.name }}</h3>
+              {% endif %}
+            </a>
           </div>
           <div class="pesco-nav-menu ">
             <!-- === Responsive Menu Search === -->
