@@ -51,7 +51,13 @@
               <li>
                 <span
                   ><i class="fas fa-headset"></i
-                  ><a href="tel:+941234567894" class="pesco-support">+94 123 4567 894</a></span
+                  ><a href="tel:+941234567894" class="pesco-support">
+                    {% if section.settings.shop_contact_phone != blank %}
+                      {{ section.settings.shop_contact_phone }}
+                    {% else %}
+                      {{ shop.phone }}
+                    {%- endif %}
+                  </a></span
                 >
               </li>
               <li>
@@ -171,6 +177,11 @@
       "id": "navbar_menu",
       "label": "Select a Menu",
       "default": "main-menu"
+    },
+    {
+      "type": "text",
+      "id": "shop_contact_phone",
+      "label": "Enter Shop Contact Phone"
     }
   ],
   "presets": [
