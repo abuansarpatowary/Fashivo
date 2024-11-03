@@ -1,3 +1,4 @@
+{% assign navigation_menu = section.settings.navbar_menu %}
 <header class="header-area">
   <!-- === Search Header Main === -->
   <div class="header-top d-lg-block d-none">
@@ -90,40 +91,36 @@
             </div>
             <nav class="main-menu">
               <ul>
-                <li class="menu-item has-children">
-                  <a href="index-2.html#">Home</a>
-                  <ul class="sub-menu">
-                    <li><a href="index.html">Home 01</a></li>
-                    <li><a href="index-2.html">Home 02</a></li>
-                  </ul>
-                </li>
-                <li class="menu-item has-children">
-                  <a href="index-2.html#">Shop</a>
-                  <ul class="sub-menu">
-                    <li><a href="shops.html">Our Shop</a></li>
-                    <li><a href="shop-details.html">Product Details</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                    <li><a href="checkout.html">Checkout</a></li>
-                    <li><a href="wishlists.html">Wishlist</a></li>
-                  </ul>
-                </li>
-                <li class="menu-item has-children">
-                  <a href="index-2.html#">Blogs</a>
-                  <ul class="sub-menu">
-                    <li><a href="blogs.html">Our Blog</a></li>
-                    <li><a href="blog-details.html">Blog Details</a></li>
-                  </ul>
-                </li>
-                <li class="menu-item has-children">
-                  <a href="index-2.html#">Pages</a>
-                  <ul class="sub-menu">
-                    <li><a href="about-us.html">About Us</a></li>
-                    <li><a href="faq.html">Faqs</a></li>
-                  </ul>
-                </li>
-                <li class="menu-item"><a href="contact.html">Contact</a></li>
+                {% for single_menu in navigation_menu.links %}
+                  <li class="menu-item {% if single_menu.links != blank %}has-children{% endif %}">
+                    <a href="{{ single_menu.url }}">{{ single_menu.title }}</a>
+
+                    {% if single_menu.links != blank %}
+                      <ul class="sub-menu">
+                        {% for childLink in single_menu.links %}
+                          <li class="menu-item {% if childLink.links != blank %}has-children{% endif %}">
+                            <a href="{{ childLink.url }}">{{ childLink.title }}</a>
+
+                            {% if childLink.links != blank %}
+                              <ul class="sub-menu">
+                                {% for grandChildLink in childLink.links %}
+                                  <li>
+                                    <a href="{{ grandChildLink.url }}">{{ grandChildLink.title }}</a>
+                                  </li>
+                                {% endfor %}
+                              </ul>
+                            {% endif %}
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+
+                {% comment %} <li class="menu-item"><a href="contact.html">Contact</a></li> {% endcomment %}
               </ul>
             </nav>
+
             <!-- ===  Hotline Support  === -->
             <div class="hotline-support d-flex d-lg-none mt-30">
               <div class="icon">
@@ -166,7 +163,14 @@
 {% schema %}
 {
   "name": "Navbar",
-  "settings": [],
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "navbar_menu",
+      "label": "Select a Menu",
+      "default": "main-menu"
+    }
+  ],
   "presets": [
     {
       "name": "Fashibo Navbar"
