@@ -60,6 +60,18 @@
         "slide_four"
       ]
     },
+    "product_catagories": {
+      "type": "fashivo-collection",
+      "settings": {
+
+      }
+    },
+    "featured_products": {
+      "type": "fashivo-featured-collection",
+      "settings": {
+
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -262,6 +274,8 @@
   "order": [
     "top_banner",
     "new_collections",
+    "product_catagories",
+    "featured_products",
     "image_banner",
     "rich_text",
     "featured_collection",
