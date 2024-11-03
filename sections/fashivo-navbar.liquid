@@ -28,11 +28,14 @@
               </li>
               <li>
                 <div class="pesco-dropdown">
-                  <a href="javascript:void(0)">English <i class="far fa-angle-down"></i></a>
+                  <a href="javascript:void(0)">
+                    {{ localization.available_languages.first.name }}
+                    <i class="far fa-angle-down"></i
+                  ></a>
                   <ul class="dropdown">
-                    {% for country in localization.available_countries -%}
+                    {% for country in localization.available_languages -%}
                       <li>
-                        <a href="javascript:void(0)">{{ country }}</a>
+                        <a href="javascript:void(0)">{{ country.name }}</a>
                       </li>
                     {%- endfor %}
                   </ul>
