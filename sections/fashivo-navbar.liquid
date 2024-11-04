@@ -62,7 +62,7 @@
               </li>
               <li>
                 <div class="social-box">
-                  <span>Follow Us</span>
+                  <span>{{ section.settings.social_box }}</span>
 
                   {% if settings.social_facebook_link != blank %}
                     <a href="{{ settings.social_facebook_link }}" target="_blank"><i class="flaticon-facebook"></i></a>
@@ -202,6 +202,12 @@
       "id": "shipping_text",
       "label": "Enter Shipping Text",
       "default": "Free Shipping"
+    },
+    {
+      "type": "text",
+      "id": "social_box",
+      "label": "Social Box Title",
+      "default": "Follow Us"
     }
   ],
   "presets": [
