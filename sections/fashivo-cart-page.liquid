@@ -1,0 +1,142 @@
+<section class="cart-page-section pt-120 pb-80">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-8">
+        <div class="cart-wrapper mb-40">
+          <h3 class="mb-20">Total Cart Items: {{ cart.item_count }}</h3>
+          <div class="cart-list table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th><i class="fas fa-tshirt"></i> Products Details</th>
+                  <th><i class="fas fa-sack-dollar"></i> Price</th>
+                  <th style="text-align: center;"><i class="fas fa-eye"></i> Quantity</th>
+                  <th style="text-align: right;"><i class="fas fa-money-bill"></i> Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in cart.items %}
+                  <tr>
+                    <td>
+                      <div class="product-thumb-item">
+                        <div class="product-img">
+                          <img src="{{ item.image | img_url: 'small' }}" alt="{{ item.title }}">
+                        </div>
+                        <div class="product-info">
+                          <h4 class="title">
+                            <a href="{{ item.url }}">{{ item.product.title }}</a>
+                          </h4>
+                          <div class="product-meta">
+                            {% for option in item.options_with_values %}
+                              <span>{{ option.name }}: {{ option.value }}</span>
+                            {% endfor %}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="price">
+                        <span class="currrency">{{ cart.currency.symbol }}</span>{{ item.line_price | money }}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="action-cart">
+                        <div class="quantity-input">
+                          <button class="quantity-down" data-quantity-id="{{ item.key }}" data-action="decrease">
+                            <i class="far fa-minus"></i>
+                          </button>
+                          <input
+                            class="quantity"
+                            type="text"
+                            value="{{ item.quantity }}"
+                            name="updates[{{ item.key }}]"
+                          >
+                          <button class="quantity-up" data-quantity-id="{{ item.key }}" data-action="increase">
+                            <i class="far fa-plus"></i>
+                          </button>
+                        </div>
+                        <div class="cart-remove">
+                          <a href="{{ routes.cart_remove_url | replace: 'item_id', item.key }}"
+                            ><i class="far fa-times"></i
+                          ></a>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="total-price">
+                        <span class="currrency">{{ cart.currency.symbol }}</span>{{ item.line_price | money }}
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="cart-bottom d-flex align-items-center justify-content-between mt-40">
+            <div class="ct-shopping">
+              <a href="{{ routes.collections_url }}" class="theme-btn style-one">Continue Shopping</a>
+            </div>
+            <div class="cl-cart">
+              <a href="{{ routes.cart_clear_url }}" class="theme-btn style-one">Clear Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4">
+        <div class="cart-sidebar-area">
+          <div class="cart-widget coupon-box-widget mb-40">
+            <h4>Use Coupon Code</h4>
+            <p>Enter your coupon code if you have one.</p>
+            <form action="/cart" method="post">
+              <input type="text" class="form_control" name="discount" required>
+              <button type="submit" class="theme-btn style-one">Apply</button>
+            </form>
+          </div>
+          <div class="cart-widget cart-total-widget mb-40">
+            <h4>Cart Totals</h4>
+            <div class="sub-total">
+              <h5>
+                Subtotal <span class="price">{{ cart.total_price | money }}</span>
+              </h5>
+            </div>
+            <div class="shipping-cart">
+              <h4>Shipping</h4>
+              <div class="single-radio">
+                <input class="form-check-input" type="radio" name="shipping" value="free_shipping" id="radio1" checked>
+                <label class="form-check-label" for="radio1"> Free Delivery <span class="price">$0.00</span></label>
+              </div>
+              <div class="single-radio">
+                <input class="form-check-input" type="radio" name="shipping" value="flat_rate" id="radio2">
+                <label class="form-check-label" for="radio2"> Flat Rate <span class="price">$15.00</span></label>
+              </div>
+              <div class="single-radio">
+                <input class="form-check-input" type="radio" name="shipping" value="local_area" id="radio3">
+                <label class="form-check-label" for="radio3"> Local Area <span class="price">$10.00</span></label>
+              </div>
+            </div>
+            <div class="price-total">
+              <h5>
+                Total <span class="price">{{ cart.total_price | money }}</span>
+              </h5>
+            </div>
+            <div class="proceced-checkout">
+              <a href="{{ routes.checkout_url }}" class="theme-btn style-one">Proceed to checkout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Fashivo Cart Page",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Fashivo Cart Page"
+    }
+  ]
+}
+{% endschema %}
