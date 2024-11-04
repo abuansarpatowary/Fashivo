@@ -51,7 +51,7 @@
               <li>
                 <span
                   ><i class="fas fa-headset"></i
-                  ><a href="tel:+941234567894" class="pesco-support">
+                  ><a href="tel:+{{section.settings.shop_contact_phone }}" class="pesco-support">
                     {% if section.settings.shop_contact_phone != blank %}
                       {{ section.settings.shop_contact_phone }}
                     {% else %}
@@ -62,11 +62,25 @@
               </li>
               <li>
                 <div class="social-box">
-                  <span>Follow US</span>
-                  <a href="index-2.html#"><i class="flaticon-facebook"></i></a>
-                  <a href="index-2.html#"><i class="flaticon-instagram"></i></a>
-                  <a href="index-2.html#"><i class="flaticon-linkedin"></i></a>
-                  <a href="index-2.html#"><i class="flaticon-twitter"></i></a>
+                  <span>Follow Us</span>
+
+                  {% if settings.social_facebook_link != blank %}
+                    <a href="{{ settings.social_facebook_link }}" target="_blank"><i class="flaticon-facebook"></i></a>
+                  {% endif %}
+
+                  {% if settings.social_instagram_link != blank %}
+                    <a href="{{ settings.social_instagram_link }}" target="_blank"
+                      ><i class="flaticon-instagram"></i
+                    ></a>
+                  {% endif %}
+
+                  {% if settings.social_linkedin_link != blank %}
+                    <a href="{{ settings.social_linkedin_link }}" target="_blank"><i class="flaticon-linkedin"></i></a>
+                  {% endif %}
+
+                  {% if settings.social_twitter_link != blank %}
+                    <a href="{{ settings.social_twitter_link }}" target="_blank"><i class="flaticon-twitter"></i></a>
+                  {% endif %}
                 </div>
               </li>
             </ul>
