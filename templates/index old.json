@@ -1,77 +1,5 @@
 {
   "sections": {
-    "top_banner": {
-      "type": "fashivo-hero",
-      "settings": {
-
-      },
-      "blocks": {
-        "slide_one": {
-          "type": "hero-slider",
-        },
-        "slide_two": {
-          "type": "hero-slider",
-        },
-        "slide_three": {
-          "type": "hero-slider",
-        }
-      },
-      "block_order": [
-        "slide_one",
-        "slide_two",
-        "slide_three"
-      ]
-    },
-    "new_collections": {
-      "type": "fashivo-promo-product",
-      "settings": {
-
-      },
-      "blocks": {
-        "slide_one": {
-          "type": "banner",
-          "settings": {
-            
-          }
-        },
-        "slide_two": {
-          "type": "banner",
-          "settings": {
-            
-          }
-        },
-        "slide_three": {
-          "type": "banner",
-          "settings": {
-            
-          }
-        },
-        "slide_four": {
-          "type": "banner",
-          "settings": {
-            
-          }
-        },
-      },
-      "block_order": [
-        "slide_one",
-        "slide_two",
-        "slide_three",
-        "slide_four"
-      ]
-    },
-    "product_catagories": {
-      "type": "fashivo-collection",
-      "settings": {
-
-      }
-    },
-    "featured_products": {
-      "type": "fashivo-featured-collection",
-      "settings": {
-
-      }
-    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -272,10 +200,6 @@
     }
   },
   "order": [
-    "top_banner",
-    "new_collections",
-    "product_catagories",
-    "featured_products",
     "image_banner",
     "rich_text",
     "featured_collection",
