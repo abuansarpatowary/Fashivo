@@ -10,10 +10,20 @@
     {% endif %}
         <div
           class="banner-item style-two mb-40 bg_cover"
-          style="background-image: url({{ banner.settings.banner_image | img_url: 'large' }});"
+          style="background-image: url( {% if banner.settings.banner_image == blank %}
+            https://fashivo-fashion.myshopify.com/cdn/shop/files/man-in-suit-on-stairs_large.jpg?v=1730650429
+            {% else %}
+            {{  banner.settings.banner_image | img_url: 'large' }} 
+              
+          {% endif %} );"
+          
         >
           <div class="banner-img">
-            <img src="{{ banner.settings.banner_image | img_url: 'large' }}" alt="banner image">
+            {% if banner.settings.banner_image == blank %}
+              {{ 'product-1' | placeholder_svg_tag : 'w-100 h-100'}}
+              {% else %}
+              <img src="{{ banner.settings.banner_image | img_url: 'large' }}" alt="banner image">
+            {% endif %}
           </div>
           <div class="banner-content">
             <span>{{ banner.settings.discount_text }}</span>

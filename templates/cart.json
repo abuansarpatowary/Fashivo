@@ -1,5 +1,11 @@
 {
   "sections": {
+    "product_page_banner":{
+      "type": "fashivo-product-page-banner"
+    },
+    "fashivo_cart":{
+      "type": "fashivo-cart-page"
+    },
     "cart-items": {
       "type": "main-cart-items",
       "settings": {
@@ -48,6 +54,8 @@
     }
   },
   "order": [
+    "product_page_banner",
+    "fashivo_cart",
     "cart-items",
     "cart-footer",
     "featured-collection"
