@@ -1,4 +1,8 @@
-{% assign collections = section.settings.collection_list %}
+{% if section.settings.collection_list != blank %}
+  {% assign allCategories = section.settings.collection_list %}
+{% else %}
+  {% assign allCategories = collections %}
+{% endif %}
 <div class="container">
   <div class="row">
     <div class="col-md-8">
@@ -20,7 +24,7 @@
   <!-- ====== Start Category Wrapper ====== -->
   <div class="category-wrapper pt-80">
     <div class="row justify-content-center">
-      {% for collection in collections %}
+      {% for collection in allCategories %}
         <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
           <div class="category-item style-two mb-110">
             <div class="category-img">

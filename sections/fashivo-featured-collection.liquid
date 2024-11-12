@@ -1,3 +1,8 @@
+{% if section.settings.products != blank %}
+  {% assign allFeaturedProducts = section.settings.products %}
+{% else %}
+  {% assign allFeaturedProducts = collections.last.products %}
+{% endif %}
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
@@ -9,7 +14,7 @@
   </div>
   <div class="products-item-wrapper">
     <!-- === Loop through selected products === -->
-    {% for product in section.settings.products %}
+    {% for product in allFeaturedProducts %}
       <div class="product-item style-three">
         <div class="product-thumbnail">
           <img
