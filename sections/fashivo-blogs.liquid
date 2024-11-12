@@ -4,11 +4,7 @@
       <div class="col-md-8">
         <!-- === Section Title  === -->
         <div class="section-title mb-50">
-          <div class="sub-heading d-inline-flex align-items-center">
-            <i class="flaticon-sparkler"></i>
-            <span class="sub-title">Explore Our Blogs</span>
-          </div>
-          <h2>Explore Our Blogs</h2>
+          {% render 'section-title' %}
         </div>
       </div>
       <div class="col-md-4">
@@ -46,6 +42,18 @@
 {
   "name": "Fashivo Blogs Section",
   "settings": [
+    {
+      "type": "text",
+      "label": "Section Title",
+      "id": "section_title",
+      "default": "Explore Our Blogs"
+    },
+    {
+      "type": "text",
+      "label": "Section Subtitle",
+      "id": "section_subtitle",
+      "default": "Read Our Latest Articles"
+    },
     {
       "type": "blog",
       "label": "Select Blog Category to Display",
