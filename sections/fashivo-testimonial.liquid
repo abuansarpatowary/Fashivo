@@ -1,8 +1,8 @@
 <div class="testimonial-bg-img">
-  {% if section.settinngs.testimonial_bg == blank %}
-    {{ 'collection-4' | placeholder_svg_tag }}
+  {% if section.settings.testimonial_bg != blank %}
+    <img src="{{ section.settings.testimonial_bg | image_url: width: 1080, height: 850  }}" alt="Testimonial Image">
   {% else %}
-    <img src="{{section.settings.testimonial_bg}}" alt="Testimonial Image">
+    {{ 'collection-4' | placeholder_svg_tag }}
   {% endif %}
 </div>
 <div class="container">
@@ -78,7 +78,7 @@
   ],
   "blocks": [
     {
-      "type": "testimonial-slider",
+      "type": "testimonial_slider",
       "name": "Testimonial Slider",
       "settings": [
         {

@@ -39,15 +39,16 @@
             <a href="{{ product.url }}" class="icon-btn"><i class="fa fa-heart"></i></a>
 
             <!-- Add form around button to match the previous link style -->
-            <div class="cart-btn-wrapper">
-              <form method="post" action="/cart/add" class="cart-btn-form">
-                <input name="id" value="{{ product.variants.first.id }}" type="hidden">
-                <button type="submit" class="cart-btn">
-                  <i class="far fa-shopping-basket"></i>
-                </button>
-              </form>
-            </div>
-
+            <a href="/cart/add">
+              <div class="cart-btn-wrapper">
+                <form method="post" action="/cart/add" class="cart-btn-form">
+                  <input name="id" value="{{ product.variants.first.id }}" type="hidden">
+                  <button type="submit" class="cart-btn">
+                    <i class="far fa-shopping-basket"></i>
+                  </button>
+                </form>
+              </div>
+            </a>
             <a href="{{ product.featured_image | img_url: '500x500' }}" class="img-popup icon-btn">
               <i class="fa fa-eye"></i>
             </a>
@@ -108,6 +109,8 @@
 {% schema %}
 {
   "name": "Featured Collection",
+  "tag": "section",
+  "class": "features-products-section pb-120",
   "settings": [
     {
       "type": "text",
