@@ -1,0 +1,195 @@
+<section class="shop-details-section pt-120 pb-80">
+  <div class="container">
+    <div class="shop-details-wrapper">
+      <div class="row">
+        <div class="col-xl-6">
+          <!-- === Product Gallery === -->
+          <div class="product-gallery-area mb-50 wow fadeInLeft">
+            <div class="product-big-slider mb-30">
+              {% for image in product.images %}
+                <div class="product-img">
+                  <a href="{{ image | img_url: '1024x1024' }}" class="img-popup">
+                    <img src="{{ image | img_url: '1024x1024' }}" alt="{{ product.title }}">
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="product-thumb-slider">
+              {% for image in product.images %}
+                <div class="product-img">
+                  <img src="{{ image | img_url: 'compact' }}" alt="{{ product.title }}">
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6">
+          <div class="product-info mb-50">
+            {% if product.compare_at_price > product.price %}
+              <span class="sale"
+                ><i class="fas fa-tags"></i>SALE
+                {{
+                  product.compare_at_price
+                  | minus: product.price
+                  | divided_by: product.compare_at_price
+                  | times: 100
+                  | round
+                -}}
+                % OFF</span
+              >
+            {% endif %}
+            <h4 class="title">{{ product.title }}</h4>
+            <ul class="ratings rating5">
+              <!-- Assuming ratings are handled by a metafield or external app -->
+              <li><i class="fas fa-star"></i></li>
+              <li><i class="fas fa-star"></i></li>
+              <li><i class="fas fa-star"></i></li>
+              <li><i class="fas fa-star"></i></li>
+              <li><i class="fas fa-star"></i></li>
+              <li>
+                <a href="#reviews">({{ product.reviews_count }} Reviews)</a>
+              </li>
+            </ul>
+            <p>{{ product.description | strip_html | truncatewords: 30 }}</p>
+            <div class="product-price">
+              {% if product.compare_at_price > product.price %}
+                <span class="price prev-price">{{ product.compare_at_price | money }}</span>
+              {% endif %}
+              <span class="price new-price">{{ product.price | money }}</span>
+            </div>
+
+            <ul class="size-list mb-30">
+              {% for variant in product.variants %}
+                <li>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="variant"
+                      value="{{ variant.id }}"
+                      id="size{{ forloop.index }}"
+                    >
+                    <label class="form-check-label" for="size{{ forloop.index }}">{{ variant.title }}</label>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+
+            <div class="product-cart-variation">
+              <ul>
+                <li>
+                  <div class="quantity-input">
+                    <button class="quantity-down"><i class="far fa-minus"></i></button>
+                    <input class="quantity" type="number" value="1" name="quantity" min="1">
+                    <button class="quantity-up"><i class="far fa-plus"></i></button>
+                  </div>
+                </li>
+                <li>
+                  <a href="/cart/add/{{ product.variants.first.id }}" class="theme-btn style-one">Add To Cart</a>
+                </li>
+                <li>
+                  <a href="/account/login" class="icon-btn"><i class="far fa-heart"></i></a>
+                </li>
+                <li>
+                  <a href="/cart" class="icon-btn"><i class="far fa-sync"></i></a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="product-meta">
+              <ul>
+                <li><span>SKU :</span> {{ product.sku }}</li>
+                <li><span>Category :</span> {{ product.type }}</li>
+                <li>
+                  <span>Tags :</span>
+                  {% for tag in product.tags %}
+                    <a href="/collections/all/{{ tag | handle }}">{{ tag }}</a>
+                    {%- unless forloop.last %}, {% endunless %}
+                  {% endfor %}
+                </li>
+                <li>
+                  <span>Share :</span>
+                  <a href="#"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="#"><i class="fab fa-instagram"></i></a>
+                  <a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="special-features">
+              <span><i class="far fa-shipping-fast"></i>Free Shipping</span>
+              <span><i class="far fa-box-open"></i>Easy Returns</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="additional-information-wrapper">
+        <div class="row">
+          <div class="col-lg-5">
+            <div class="additional-info-box mb-40">
+              <h3>Additional Information:</h3>
+              <ul>
+                <li>
+                  Fabric type <span>{{ product.metafields.fabric_type }}</span>
+                </li>
+                <li>
+                  Care instructions: <span>{{ product.metafields.care_instructions }}</span>
+                </li>
+                <li>
+                  Occasion type: <span>{{ product.metafields.occasion_type }}</span>
+                </li>
+                <li>
+                  Pattern: <span>{{ product.metafields.pattern }}</span>
+                </li>
+                <li>
+                  Country of Origin: <span>{{ product.vendor }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="description-wrapper mb-40">
+              <div class="pesco-tabs style-two mb-50">
+                <ul class="nav nav-tabs">
+                  <li>
+                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#description">
+                      Description
+                    </button>
+                  </li>
+                  <li>
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#reviews">Reviews</button>
+                  </li>
+                </ul>
+              </div>
+              <div class="tab-content">
+                <div class="tab-pane fade active show" id="description">
+                  <h4>Description</h4>
+                  <p>{{ product.description }}</p>
+                </div>
+                <div class="tab-pane fade" id="reviews">
+                  <!-- Reviews can be added through Shopify apps or custom code -->
+                  <h4>Total Reviews ({{ product.reviews_count }})</h4>
+                  <!-- Placeholder for reviews -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Fashivo Product Details",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Single Product details"
+    }
+  ]
+}
+{% endschema %}

@@ -3,6 +3,9 @@
     "product_page_banner":{
       "type": "fashivo-product-page-banner"
     },
+    "product_details":{
+      "type": "fashivo-product-details"
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -212,6 +215,7 @@
   },
   "order": [
     "product_page_banner",
+    "product_details",
     "main",
     "image-with-text",
     "multicolumn",
