@@ -32,10 +32,20 @@
           {% endif %}
           <div class="hover-content">
             <a href="{{ product.url }}" class="icon-btn"><i class="fa fa-heart"></i></a>
-            <a href="{{ product.url }}" class="cart-btn"><i class="far fa-shopping-basket"></i></a>
-            <a href="{{ product.featured_image | img_url: '500x500' }}" class="img-popup icon-btn"
-              ><i class="fa fa-eye"></i
-            ></a>
+
+            <!-- Add form around button to match the previous link style -->
+            <div class="cart-btn-wrapper">
+              <form method="post" action="/cart/add" class="cart-btn-form">
+                <input name="id" value="{{ product.variants.first.id }}" type="hidden">
+                <button type="submit" class="cart-btn">
+                  <i class="far fa-shopping-basket"></i>
+                </button>
+              </form>
+            </div>
+
+            <a href="{{ product.featured_image | img_url: '500x500' }}" class="img-popup icon-btn">
+              <i class="fa fa-eye"></i>
+            </a>
           </div>
         </div>
         <div class="product-info-wrap">
@@ -67,7 +77,28 @@
     {% endfor %}
   </div>
 </div>
+{% style %}
+  .cart-btn-wrapper {
+    display: inline-block;
+  }
 
+  .cart-btn-form {
+    display: inline;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cart-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .cart-btn i {
+    display: inline;
+  }
+{% endstyle %}
 <!-- Shopify Schema -->
 {% schema %}
 {
