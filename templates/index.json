@@ -69,7 +69,13 @@
     "featured_products": {
       "type": "fashivo-featured-collection",
       "settings": {
-
+        
+      }
+    },
+    "blogs": {
+      "type": "fashivo-blogs",
+      "settings": {
+        
       }
     },
     "image_banner": {
@@ -276,6 +282,7 @@
     "new_collections",
     "product_catagories",
     "featured_products",
+    "blogs",
     "image_banner",
     "rich_text",
     "featured_collection",
