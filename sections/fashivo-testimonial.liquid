@@ -1,0 +1,117 @@
+<div class="testimonial-bg-img">
+  {% if section.settinngs.testimonial_bg == blank %}
+    {{ 'collection-4' | placeholder_svg_tag }}
+  {% else %}
+    <img src="{{section.settings.testimonial_bg}}" alt="Testimonial Image">
+  {% endif %}
+</div>
+<div class="container">
+  <div class="row justify-content-end">
+    <div class="col-lg-8">
+      <div class="testimonial-wrapper">
+        <!-- === Section Title  === -->
+        <div class="section-title text-center mb-60">
+          {% render 'section-title' %}
+        </div>
+        <div class="testimonial-slider-two">
+          {% for testimonial_slider in section.blocks %}
+            <div class="testimonial-item style-two">
+              <div class="testimonial-content">
+                <ul class="ratings rating5 mb-25">
+                  <li><i class="fas fa-star"></i></li>
+                  <li><i class="fas fa-star"></i></li>
+                  <li><i class="fas fa-star"></i></li>
+                  <li><i class="fas fa-star"></i></li>
+                  <li><i class="fas fa-star"></i></li>
+                </ul>
+                <p class="mb-35">
+                  {{ testimonial_slider.settings.testimonial_content }}
+                </p>
+                <div class="author-item">
+                  <div class="author-thumb">
+                    {% if testimonial_slider.settings.author_image != blank %}
+                      <img
+                        src="{{ testimonial_slider.settings.author_image | image_url: width: 70, height: 70 }}"
+                        alt="{{ testimonial_slider.settings.author_image.alt }}"
+                      >
+                    {% else %}
+                      {{ 'product-3' | placeholder_svg_tag }}
+                    {% endif %}
+                  </div>
+                  <div class="author-info">
+                    <h5>{{ testimonial_slider.settings.author_name }}</h5>
+                    <span class="position">{{ testimonial_slider.settings.author_designation }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fashivo Testimonial",
+  "tag": "section",
+  "class": "testimonial-section pt-120 pb-120 p-r z-1",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "What’s our clients say"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "Testimonial"
+    },
+    {
+      "type": "image_picker",
+      "id": "testimonial_bg",
+      "label": "Background Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial-slider",
+      "name": "Testimonial Slider",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "testimonial_content",
+          "label": "Testimonial Content",
+          "default": "I recently ordered a few items from Fashionista Boutique, and I couldn't be happier with my purchase! The quality of the clothes is outstanding, and the fit is perfect. My order arrived promptly, beautifully packaged."
+        },
+        {
+          "type": "image_picker",
+          "id": "author_image",
+          "label": "Author Image"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "default": "John Doe",
+          "label": "Author Name"
+        },
+        {
+          "type": "text",
+          "id": "author_designation",
+          "default": "Manager and CEO",
+          "label": "Author Designation"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Testimonial"
+    }
+  ]
+}
+{% endschema %}
