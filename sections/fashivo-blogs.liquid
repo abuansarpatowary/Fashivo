@@ -1,3 +1,8 @@
+{% if section.settings.blog_category.articles != blank %}
+  {% assign defaultBlogs = section.settings.blog_category.articles %}
+{% else %}
+  {% assign defaultBlogs = blogs.news.articles %}
+{% endif %}
 <section class="blogs-section pt-110 pb-100">
   <div class="container">
     <div class="row align-items-center">
@@ -14,7 +19,7 @@
     <!-- === Blog Slider === -->
     <div class="blogs-slider-one">
       <!-- === Blog Post Item === -->
-      {% for single_blog in section.settings.blog_category.articles %}
+      {% for single_blog in defaultBlogs %}
         <div class="blog-post-item style-three mb-30">
           <div class="post-thumbnail">
             <img src="{{ single_blog.image |  image_url: width: 200, height: 200}}" alt="{{article.title}}">
