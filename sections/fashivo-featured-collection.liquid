@@ -3,12 +3,7 @@
     <div class="col-lg-12">
       <!-- === Section Title  === -->
       <div class="section-title text-center mb-60">
-        <div class="sub-heading d-inline-flex align-items-center">
-          <i class="flaticon-sparkler"></i>
-          <span class="sub-title">{{ section.settings.sub_title }}</span>
-          <i class="flaticon-sparkler"></i>
-        </div>
-        <h2>{{ section.settings.main_title }}</h2>
+        {% render 'section-title' %}
       </div>
     </div>
   </div>
@@ -80,13 +75,13 @@
   "settings": [
     {
       "type": "text",
-      "id": "sub_title",
+      "id": "section_subtitle",
       "label": "Sub Title",
       "default": "Feature Products"
     },
     {
       "type": "text",
-      "id": "main_title",
+      "id": "section_title",
       "label": "Main Title",
       "default": "Our Features Collection"
     },
